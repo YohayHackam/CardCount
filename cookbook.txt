@@ -1,0 +1,931 @@
+0. vs code extensions to help us with React:
+
+   Simple React Snippets
+   ES7 + React/Redux/React Native
+   JS JSX Snippets (you should remember some abbreviations)
+
+  To see autocomplete, change App.js to App.jsx
+
+
+1. Check nodejs installation
+
+> node --version
+
+2. npm - Node Package Manager - 
+   sometimes installed with node, sometimes not
+
+   Check npm version:
+
+> npm --version
+
+  npm - istalls modules
+
+3. npx - Node Package Execute
+
+   npx - executes not installed modules - directly from the internet
+
+   We use npx for one-time execution of some modules
+
+   > npx --version
+
+4. Creating initial React App
+
+   2 options
+   1st: > npx create-react-app todo
+        (run create-react-app module once directly from the Internet)
+
+   2nd: > npm i -g create-react-app
+        (i - installs the module create-react-app -g - globally)
+        > create-react-app todo
+        (run create-react-app module from the installation on the computer)
+5. We got directory todo
+
+   Inside we have 
+   - node_modules - all was installed as the part of our React app
+   - package.json - contains the app description, scripts and 
+                    dependencies
+   - package-lock.json - keeps all the versions of all the installed modules
+
+   - .gitignore - it's a file to know what should not enter git versions
+
+6. We use 
+   
+   "scripts": {
+    "start": "react-scripts start",
+
+    package.json
+
+     and run
+
+    > cd todo
+    > npm start
+
+    and now there is a live server with the React App
+
+7. public/index.html contains <div id="root"></div>
+
+   our app is inside this div
+
+8. src/index.js
+
+   delete everything with reportWebVitals
+
+   ReactDOM.render() method displays the parameter on the screen
+ 
+9. React language is JSX - it is constructed from JS and html
+   
+   It has StrictMode - it looks for errors
+
+   Any word can be a tag in JSX
+
+   Attribute "class" in the tags in JSX is "className"
+
+10. This is the import of the component App:
+
+     import App from './App';
+
+    ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+); - gets 2 parameters
+
+    first
+    -----
+ <React.StrictMode>
+    <App />
+  </React.StrictMode>
+
+    second
+    ------
+    document.getElementById('root')
+
+
+     and displays App component at <div id="root"></div>
+
+11. Delete from src:
+      App.test.js
+      reportWebVitals.js
+      setupTests.js
+
+12. App.js:
+
+This is a classic React component
+Component name: App
+
+It is defined by the function App that has "return()",
+
+and "return()" returns the visual part of the component:
+
+everything that sits between the brackets of "return()" 
+
+will be displayed at <div id="root"></div> as <App />
+
+App.js has statement: export default App;
+
+Without it App component could not be imported.
+
+<div className="App"></div> - is a container of the component
+
+13. React component is a module of our app and it is
+    defined by the function with the same name,
+    and it will be rendered as a tag with the same name
+
+14. import logo from './logo.svg';
+    .......
+    <img src={logo} className="App-logo" alt="logo" />
+
+    (import create objects for image or for some css,
+      and here we see inside HTML {} are used to contain js,
+      in this case, the imported object)
+
+15. Delete
+    from App.js:
+
+        everything between <div className="App"> and </div>,
+
+        import logo from './logo.svg';
+        import './App.css';
+
+    from src:
+
+        App.css
+        logo.svg
+
+    from index.css
+
+         code { ... }
+
+16. App.js:
+
+function App() {
+  return (
+    <div className="App">
+        <div className="wrapper">
+          <h1>To Do</h1>
+        </div> 
+    </div>
+  );
+}
+
+export default App;
+
+17. index.css:
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wrapper {
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 5rem;
+}
+
+
+18. We tried react class component. Created new file TryClass.jsx.
+
+Ran rcc. Got:
+
+import { Component } from 'react'
+
+// React.Component is equivalent to Component (that was imported
+//   in the previous line)
+
+export default class TryClass extends Component {
+    render() {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
+}
+
+This is an older option for React Component
+
+19. create src/Todo/TodoList.jsx
+
+"rfc" - react functional component
+
+export default function TodoList() {
+    return (
+        <div className="TodoList">
+            <ul>
+                <li>Buy milk</li>
+                <li>Learn React</li>
+                <li>Run 10 km</li>
+            </ul>
+            
+        </div>
+    )
+}
+
+20. App.jsx:
+
+import TodoList from './Todo/TodoList'
+
+function App() {
+  return (
+    <div className="App">
+        <div className="wrapper">
+          <h1>To Do</h1>
+          <TodoList />
+
+...
+
+21. TodoList renders without <div className="TodoList"> too
+
+export default function TodoList() {
+    return (
+            <ul>
+                <li>Buy milk</li>
+                <li>Learn React</li>
+                <li>Run 10 km</li>
+            </ul>
+            
+    )
+}
+
+22. Add styles:
+
+    option 1: index.css
+    option 2: import <component>.css
+    option 3: through some "styles" object inline
+
+23. TodoList.jsx:
+
+const styles = {
+    ul: {
+        listStyle: "none",
+        margin: 0,
+        padding: 0
+    }
+}
+
+export default function TodoList() {
+    return (
+            <ul style={styles.ul}>
+                <li>Buy milk</li>
+                <li>Learn React</li>
+                <li>Run 10 km</li>
+            </ul>
+            
+    )
+}
+
+24. src/Todo/TodoItem.jsx
+
+const TodoItem = () => {
+    return (
+        <li>Learn React</li>
+    );
+}
+
+export default TodoItem;
+
+25. TodoList:
+
+import TodoItem from './TodoItem'
+
+const styles = {
+    ul: {
+        listStyle: "none",
+        margin: 0,
+        padding: 0
+    }
+}
+
+export default function TodoList() {
+    return (
+            <ul style={styles.ul}>
+                <TodoItem />
+                <TodoItem />
+                <TodoItem />
+            </ul>
+            
+    )
+}
+
+26. App.jsx:
+
+import TodoList from './Todo/TodoList'
+
+function App() {
+
+  const todos = [
+    {completed: false, mission: "Buy milk"},
+    {completed: false, mission: "Learn React"},
+    {completed: false, mission: "Run 10km"}
+  ]
+
+  return (
+    <div className="App">
+        <div className="wrapper">
+          <h1>To Do</h1>
+          <TodoList toBeDone={todos}/>
+        </div> 
+    </div>
+  );
+}
+
+export default App;
+
+We pass todos as parameter to the function TodoList:
+<TodoList toBeDone={todos} skyColor="blue"/>
+
+toBeDone is the name of the passed property - shortly - "props"
+skyColor is the name of another passed property.
+
+"props" is an object. Here it consists of 2 properties: toBeDone and
+ skyColor
+
+27. TodoList:
+
+..............
+export default function TodoList(props) {
+    return (
+            <ul style={styles.ul}>
+                {props.toBeDone.map(mission=><TodoItem todo={mission}/>)}
+            </ul>
+            
+    )
+}
+
+28. TodoItem:
+
+......................
+const TodoItem = (props) => {
+    return (
+        <li>{props.todo.mission}</li>
+    );
+}
+
+29. Now we see React warnings: it needs attribute "key" for 
+each list item in the component that creates the list
+
+Now we add it to todos:
+
+const todos = [
+    {id: 3, completed: false, mission: "Buy milk"},
+    {id: 4, completed: false, mission: "Learn React"},
+    {id: 999, completed: false, mission: "Run 10km"},
+    {id: 9, completed: false, mission: "Eat very big lunch"}
+
+export default function TodoList(props) {
+    return (
+            <ul style={styles.ul}>
+                { 
+                    props.toBeDone.map((mission,idx)=><TodoItem todo={mission} key={mission.id} i={idx}/>) 
+                }
+            </ul>
+            
+    )
+}
+
+const TodoItem = (props) => {
+    return (
+        <li><strong>{props.i+1}&nbsp;</strong>{props.todo.mission}</li>
+    );
+}
+
+30. To validate props we install prop-types module
+    Documentation, for example: https://www.npmjs.com/package/prop-types
+>npm install --save prop-types
+or
+>npm i prop-types
+or
+>npm i -P prop-types
+(This way it will be in production too.
+If we prefer use it for development only, we can run:
+  npm i -D prop-types
+  or
+  npm i -g prop-types
+)
+
+Now we see in package.json in "dependencies" that "prop-types" was added
+
+31. TodoList.jsx: added PropTypes
+
+import PropTypes from 'prop-types';
+import TodoItem from './TodoItem';
+
+const styles = {
+    ul: {
+        listStyle: "none",
+        margin: 0,
+        padding: 0
+    }
+}
+
+export default function TodoList(props) {
+    return (
+            <ul style={styles.ul}>
+                { 
+                    props.toBeDone.map((mission,idx)=><TodoItem 
+                           todo={mission} 
+                           key={mission.id} 
+                           i={idx}/>) 
+                }
+            </ul>
+            
+    )
+}
+
+TodoList.propTypes = {
+    toBeDone: PropTypes.array
+}
+
+32. TodoItem.jsx: added PropTypes and destructuring of "props"
+
+import PropTypes from 'prop-types';
+
+const TodoItem = ({todo,i}) => {
+    return (
+        <li>
+            <strong>{i+1}&nbsp;</strong>
+            {todo.mission}
+        </li>
+    );
+}
+
+export default TodoItem;
+
+TodoItem.propTypes = {
+    i: PropTypes.number,
+    todo: PropTypes.object.isRequired
+}
+
+33. TodoItem.jsx: added styles and .rm className to the button
+
+import PropTypes from 'prop-types';
+
+const styles={
+    li: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '.5rem 1rem',
+        border: '1px solid #ccc',
+        borderRadius: '4px',
+        marginBottom: '.5rem'
+    },
+    input: {
+        marginRight: '1rem'
+    }
+}
+
+const TodoItem = ({todo,i}) => {
+    return (
+        <li style={styles.li}>
+            <span>
+                <input type="checkbox" style={styles.input}/>
+                <strong>{i+1}&nbsp;</strong>
+                {todo.mission}
+            </span>
+            <button className="rm">&times;</button>
+        </li>
+    );
+}
+
+export default TodoItem;
+
+TodoItem.propTypes = {
+    i: PropTypes.number,
+    todo: PropTypes.object.isRequired
+}
+
+34. Added to index.css style for .rm button:
+
+.rm {
+  background: red;
+  border-radius: 50%;
+  color: #fff;
+  border: none;
+}
+
+35. In App.jsx prepared function toggleCompleted to pass as prop to 
+    TodoList
+
+      function toggleCompleted(id) {
+    console.log(`Got id ${id}`);
+  }
+
+  return (
+    <div className="App">
+        <div className="wrapper">
+          <h1>To Do</h1>
+          <TodoList toBeDone={todos} onToggleCompleted={toggleCompleted}/>
+        </div> 
+    </div>
+  );
+
+36. In TodoList.jsx we just pass the function further to TodoItem:
+
+                { 
+                    props.toBeDone.map((mission,idx)=><TodoItem 
+                           todo={mission} 
+                           key={mission.id} 
+                           i={idx}
+                           onVChange={props.onToggleCompleted}/>) 
+                }
+            </ul>
+            
+    )
+}
+
+TodoList.propTypes = {
+    toBeDone: PropTypes.array,
+    onToggleCompleted: PropTypes.func
+}
+
+37. TodoItem got the function - now it named "onVChange"  and passed id
+inside the function:
+
+const TodoItem = ({todo,i,onVChange}) => {
+    return (
+        <li style={styles.li}>
+            <span>
+                <input type="checkbox" style={styles.input}
+                                onChange={()=>{ onVChange(todo.id)}}/>
+                <strong>{i+1}&nbsp;</strong>
+                {todo.mission}
+            </span>
+            <button className="rm">&times;</button>
+        </li>
+    );
+}
+
+export default TodoItem;
+
+TodoItem.propTypes = {
+    i: PropTypes.number,
+    todo: PropTypes.object.isRequired,
+    onVChange: PropTypes.func
+}
+
+38. ***********************************************
+                  HOOOOOOOOOKS
+    ***********************************************
+   For now even when we create new todos, TodoItem is not rendered -
+   it's because Virtual DOM cannot see "state" changed.
+
+   So, we convert "todos" to be state, and we'll treat the state
+   with the hook "useState"
+
+   App.jsx:
+   import { useState } from 'react'   
+
+   ---------------------------------------
+
+   useState defines state variable (todos) and function which changes
+   the state (setTodos).
+   useState gets the initial value of the state as it's argument:
+
+   App.jsx:
+
+   function App() {
+
+  const [ todos, setTodos] = useState([
+    {id: 3, completed: false, mission: "Buy milk"},
+    {id: 4, completed: false, mission: "Learn React"},
+    {id: 999, completed: false, mission: "Run 10km"},
+    {id: 9, completed: false, mission: "Eat very big lunch"}
+  ]);
+    
+
+setTodos gets the new value for "todos" and sets it.
+
+  function toggleCompleted(id) {
+    console.log(`Got id ${id}`);
+    setTodos(
+
+      todos.map(el=>{
+        if (el.id === id) el.completed = !el.completed;
+        return el;
+      })
+      
+    )
+  }
+
+39. Add class .done in the case the mission is completed
+   and check the checkbox. TodoItem.jsx
+
+   const TodoItem = ({todo,i,onVChange}) => {
+    console.log(`i am in the item: ${todo.completed}`)
+    const classes = []
+
+    if (todo.completed) classes.push("done");
+
+    return (
+        <li style={styles.li}>
+            <span className={classes.join(" ")}>
+                <input type="checkbox" style={styles.input}
+                                onChange={()=>{ onVChange(todo.id)}}
+                                checked={todo.completed}/>
+                <strong>{i+1}&nbsp;</strong>
+                {todo.mission}
+            </span>
+            <button className="rm">&times;</button>
+        </li>
+    );
+}
+
+index.css:
+
+.done {
+  text-decoration: line-through;
+}
+
+40. React asks to envelope it's components when they comprised
+from several elements.
+It could be done by React.Fragment, this way:
+
+function CounterButton({increment}) {
+
+  return (
+    <>
+      
+      <button>+{increment}</button>
+      <button>+{increment}</button>
+    </>
+  )
+
+}
+
+or this way:
+
+function CounterButton({increment}) {
+
+  return (
+    <React.Fragment>
+      
+      <button>+{increment}</button>
+      <button>+{increment}</button>
+    </React.Fragment>
+  )
+
+}
+
+and then in HTML we don't see these tags
+
+41. In App.jsx we've create function for deleting a mission, and
+we can pass it as a prop in the way we passed the function toggleCompleted,
+
+or
+
+we could put it into the context
+
+src/context.js:
+
+import React from 'react';
+const Context = React.createContext();
+
+export default Context;
+
+42. App.jsx with the import of Context,
+             Context.Provider layer,
+             delete function
+
+import { useState } from 'react';
+import Context from './context'
+import TodoList from './Todo/TodoList'
+
+function App() {
+
+  const [ todos, setTodos] = useState([
+    {id: 3, completed: false, mission: "Buy milk"},
+    {id: 4, completed: false, mission: "Learn React"},
+    {id: 999, completed: true, mission: "Run 10 km"},
+    {id: 9, completed: false, mission: "Eat very big lunch"}
+  ]);
+   
+
+  function toggleCompleted(id) {
+    console.log(`Got id ${id}`);
+    setTodos(
+
+      todos.map(el=>{
+        if (el.id === id) el.completed = !el.completed;
+        return el;
+      })
+      
+    )
+  }
+
+  function deleteMission(id) {
+
+    setTodos(
+
+      todos.filter(todo=>todo.id !== id)
+
+    )
+
+  } 
+
+  return (
+    <Context.Provider value={{ deleteMission }}>
+      
+      <div className="App">
+          <div className="wrapper">
+            <h1>To Do</h1>
+            <TodoList toBeDone={todos} onToggleCompleted={toggleCompleted}/>
+          </div> 
+      </div>
+    </Context.Provider>
+  );
+}
+
+43. useContext(Context) returns object of all the values that were passed
+    to the Context
+
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import Context from '../context';
+
+const styles={
+    li: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '.5rem 1rem',
+        border: '1px solid #ccc',
+        borderRadius: '4px',
+        marginBottom: '.5rem'
+    },
+    input: {
+        marginRight: '1rem'
+    }
+}
+
+const TodoItem = ({todo,i,onVChange}) => {
+    
+const { deleteMission } =  useContext(Context);
+
+    const classes = []
+
+    if (todo.completed) classes.push("done");
+
+    return (
+        <li style={styles.li}>
+            <span className={classes.join(" ")}>
+                <input type="checkbox" style={styles.input}
+                                onChange={()=>{ onVChange(todo.id)}}
+                                checked={todo.completed}/>
+                <strong>{i+1}&nbsp;</strong>
+                {todo.mission}
+            </span>
+            <button className="rm" 
+                    onClick={()=>{deleteMission(todo.id)}}>
+                    &times;
+            </button>
+        </li>
+    );
+}
+
+export default TodoItem;
+
+TodoItem.propTypes = {
+    i: PropTypes.number,
+    todo: PropTypes.object.isRequired,
+    onVChange: PropTypes.func
+}
+
+44. For the case that there is no missions we put into App.jsx instead of
+    the line of TodoList:
+
+            {todos.length ? 
+              <TodoList toBeDone={todos} 
+                        onToggleCompleted={toggleCompleted}/> :
+              <p>No more missions!</p>}
+
+45. Create src/Todo/AddTodo.jsx:
+
+import {useState} from 'react';
+import PropTypes from 'prop-types';
+
+
+export default function AddTodo({onFormSubmit}) {
+    const [newTodo, setNewTodo] = useState("");
+
+    return (
+        <form style={{ marginBottom: "1rem",
+                       display: "flex"}}
+              onSubmit={}>
+            <input type="text" style={{ flex:1,
+                                        padding: "0.5rem"}}
+                    onChange={e=>{setNewTodo(e.target.value);
+                                  console.log(`new value is ${newTodo}`)}}/>
+            <button style={{ marginLeft: "0.7rem",
+                             padding: "0.5rem"}}>Add Todo</button>
+        </form>
+    )
+}
+
+AddTodo.propTypes = {
+
+    onFormSubmit: PropTypes.func
+}
+
+46. App.js:
+
+import { useState } from 'react';
+import Context from './context'
+import TodoList from './Todo/TodoList'
+import AddTodo from './Todo/AddTodo';
+
+function App() {
+
+  const [ todos, setTodos] = useState([
+    {id: 3, completed: false, mission: "Buy milk"},
+    {id: 4, completed: false, mission: "Learn React"},
+    {id: 999, completed: true, mission: "Run 10 km"},
+    {id: 9, completed: false, mission: "Eat very big lunch"}
+  ]);
+   
+
+  function toggleCompleted(id) {
+    console.log(`Got id ${id}`);
+    setTodos(
+
+      todos.map(el=>{
+        if (el.id === id) el.completed = !el.completed;
+        return el;
+      })
+      
+    )
+  }
+
+  function deleteMission(id) {
+
+    setTodos(
+
+      todos.filter(todo=>todo.id !== id)
+
+    )
+
+  } 
+
+  function addMission(newMission) {
+
+    setTodos (
+      todos.concat({id: Date.now(), completed: false, mission: newMission})
+    )
+
+  }
+
+  return (
+    <Context.Provider value={{ deleteMission }}>
+      
+      <div className="App">
+          <div className="wrapper">
+            <h1>To Do</h1>
+            <AddTodo onFormSubmit={addMission}/>
+            {todos.length ? 
+              <TodoList toBeDone={todos} 
+                        onToggleCompleted={toggleCompleted}/> :
+              <p>No more missions!</p>}
+          </div> 
+      </div>
+    </Context.Provider>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
