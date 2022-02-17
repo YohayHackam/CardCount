@@ -5,23 +5,20 @@ import ListHolder from "./List/ListHolder";
 function App() {
 
   
-  const [getArry,setArry]=useState([
+  const [getArry,setArry]=useState([]);
 
-  ]);
-  const DeleteCard = (cardId)=>{
-console.log("delete " +cardId);
-setArry(getArry.filter(card => 
-   {return (card.id!==cardId)}) )
+  function DeleteCard(cardId){
+      console.log("delete " +cardId);
+      setArry(getArry.filter(card =>{return (card.id!==cardId)}))
   };
 
  
    function AddCard(){
     let card={
       id: Date.now(),
-      suit:String(document.getElementById("suit").value),
-      rank:String(document.getElementById("rank").value)
+      suit:document.getElementById("suit").value,
+      rank:document.getElementById("rank").value
     }
-    //let maxArr= getArry.map(card =>Number(card.id));
     console.log(getArry);
     console.log("add " +card.id+ card.suit+ card.rank)
     getArry.unshift(card)
@@ -40,17 +37,17 @@ setArry(getArry.filter(card =>
             <label htmlFor="suit" >
                צורה (חליפה):
               <select name="suit" id="suit">
-                <option value="תלתן">&clubs;</option>
-                <option value="יהלום">&diams;</option>
-                <option value="לב">&hearts;</option>
-                <option value="עלה">&spades;</option>
+                <option value="&clubs;">&clubs;</option>
+                <option value="&diams;">&diams;</option>
+                <option value="&hearts;">&hearts;</option>
+                <option value="&spades;">&spades;</option>
               </select>
             </label>
             <br/>
             <label htmlFor="rank" >
               ערך  (דרגה):
               <select name="rank" id="rank">
-                <option value="אס">אס</option>
+                <option value="A">A</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -60,9 +57,9 @@ setArry(getArry.filter(card =>
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
-                <option value="נסיך">נסיך</option>
-                <option value="מלכה">מלכה</option>
-                <option value="מלך">מלך</option>              
+                <option value="J">Jack</option>
+                <option value="Q">Queen</option>
+                <option value="K">King</option>              
               </select>
             </label>
             <br />

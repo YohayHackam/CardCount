@@ -51,6 +51,21 @@ option{
 .delBtn{
   background-color:red;
   margin:0 4px;
-  border-radius: 5px;
-  
+  border-radius: 5px;  
+}
+
+
+.redCard{
+    color:red;
+    background: white;
+  }
+ 
+.blackCard{
+    color:black;
+    background:white;
+  }
+.card{
+  padding: 5px;
+  border-radius: 3px;
+  margin:3px;
 }
